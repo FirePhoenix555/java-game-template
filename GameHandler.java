@@ -14,6 +14,8 @@ public class GameHandler extends JPanel implements Runnable {
 	
 	Thread gameThread;
 	KeyHandler kh = new KeyHandler();
+	MouseHandler mh = new MouseHandler();
+	SoundManager sm = new SoundManager();
 	
 	Player player;
 	
@@ -21,6 +23,7 @@ public class GameHandler extends JPanel implements Runnable {
 		setPreferredSize(new Dimension(width, height));
 		setDoubleBuffered(true);
 		addKeyListener(kh);
+		addMouseListener(mh);
 		setFocusable(true);
 		
 		initialize();
@@ -56,6 +59,8 @@ public class GameHandler extends JPanel implements Runnable {
 	}
 	
 	private void update() {
+		mh.updateMouseLocation(this);
+		
 		player.update(kh);
 	}
 	
